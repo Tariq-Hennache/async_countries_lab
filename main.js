@@ -5,13 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const list = document.querySelector("ul");
 
+    const pop = document.querySelector("h2")
+
     const fetchCountriesNames = async () => {
 
 
-        // this code works for the peru example
+        // //this code works for the peru example
         // const response = await fetch("https://restcountries.com/v3.1/name/peru");
         // const jsonData = await response.json();
-        // const commonName = await jsonData[0].name.common
+        // const commonName = await jsonData[0].flag
         // console.log(commonName);
 
         const allCountriesNames = []
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const jsonData = await response.json();
         for(let i = 0; i<= 249; i++){
             allCountriesNames.push(jsonData[i].name.common)
+            allCountriesNames.push(jsonData[i].flag)
         }
         console.log(allCountriesNames);
 
@@ -28,6 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
             newListPoint.textContent = name;
             list.appendChild(newListPoint)
          })
+
+        
+         let totalpopulation = 0;
+
+         for(let i = 0; i<= 249; i++){
+            totalpopulation += jsonData[i].population
+         }
+
+         console.log(totalpopulation)
+
+         pop.textContent = totalpopulation
         
     
     }
